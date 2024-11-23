@@ -1,0 +1,113 @@
+<!-- include header  -->
+{% include 'include/header.html' %}
+
+<!-- content area  -->
+<div class="heading_cls">
+    <h1 class="heading_one">Books Directory</h1>
+    <span class="nearheadin_span">Explore the book for best recommendations</span>
+</div>
+
+{% if inspired_books_for_you %}
+    <div class="heading_cls">
+        <span class="nearheadin_span">Inspired by you</span>
+    </div>
+
+    <div class="product_container">
+        <div class="product_parent">
+
+            {% for book in inspired_books_for_you %}
+                <div class="each_product">
+                    <div class="product_img_container">
+                        <img class="img_product" src="{{ static_url }}static/img/loading.webp"
+                            data-src="{{ static_url }}static/img/open_black_book.svg" />
+                    </div>
+                    <div class="product_content">
+                        <h2 class="product_title">{{ book['Title'] }}</h2>
+                        <h3 class="category">{{ book['Genre'] }}</h3>
+                        <div class="price_and_buy">
+                            <button class="btn custom_btn"><a href="/book_detail/{{ book['book_id'] }}">Read More</a></button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <hr />
+{% endif %}
+
+
+<!-- products list  -->
+<div class="product_container">
+    <div class="product_parent" id="product_parent_pagination">
+
+        {% for book in BooksForHome %}
+        <div class="each_product">
+            <div class="product_img_container">
+                <img class="img_product" src="{{ static_url }}static/img/loading.webp"
+                    data-src="{{ static_url }}static/img/open_black_book.svg" />
+            </div>
+            <div class="product_content">
+                <h2 class="product_title" title="{{ book['Title'] }}">{{ book['truncate_title'] }}</h2>
+                <h3 class="category">{{ book['Genre'] }}</h3>
+                <div class="price_and_buy">
+                    <button class="btn custom_btn"><a href="/book_detail/{{ book['book_id'] }}">Read More</a></button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    {% if is_more_page %}
+    <button class="btn show_more_btn" id="pagination" data-page="1">Show More</button>
+    {% endif %}
+</div>
+
+<!-- faq -->
+<div class="heading_cls">
+    <h1 class="heading_one heading_two">FAQs</h1>
+    <span class="nearheadin_span">Clear Your Doubts by FAQs</span>
+</div>
+
+<div class="container faq_container my-3">
+    <div class="faq_parent_ul">
+        <div class="li">
+            <input type="radio" name="per_item_faq" id="faq_child_1" />
+            <label for="faq_child_1">Can I insert a link within an article?</label>
+            <div class="ans_content">
+                <p>Yes, you can include relevant links within the article.</p>
+            </div>
+        </div>
+
+        <div class="li">
+            <input type="radio" name="per_item_faq" id="faq_child_2" />
+            <label for="faq_child_2">Are links do-follow?</label>
+            <div class="ans_content">
+                <p>It depends; generally, links can be a mix of no-follow and do-follow.</p>
+            </div>
+        </div>
+
+        <div class="li">
+            <input type="radio" name="per_item_faq" id="faq_child_4" />
+            <label for="faq_child_4">Do websites charge for do-follow links?</label>
+            <div class="ans_content">
+                <p>If your goal is to create a backlink through a guest post, then some websites may require
+                    payment.</p>
+            </div>
+        </div>
+
+        <div class="li">
+            <input type="radio" name="per_item_faq" id="faq_child_5" />
+            <label for="faq_child_5">How can I submit a guest post?</label>
+            <div class="ans_content">
+                <p>Simply click on the external link to visit the website and follow their guidelines to submit your
+                    guest post.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- include footer  -->
+{% include 'include/footer.html' %}

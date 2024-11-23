@@ -1,0 +1,34 @@
+<!-- include header  -->
+{% include 'include/header.html' %}
+
+<!-- content area  -->
+<div class="heading_cls">
+    <span class="nearheadin_span">Search result for "{{ query }}"</span>
+</div>
+<!-- products list  -->
+<div class="product_container">
+    <div class="product_parent">
+
+        {% for book in books %}
+        <div class="each_product">
+            <div class="product_img_container">
+                <img class="img_product" src="{{ static_url }}static/img/loading.webp"
+                    data-src="{{ static_url }}static/img/open_black_book.svg" />
+            </div>
+            <div class="product_content">
+                <h2 class="product_title">{{ book['Title'] }}</h2>
+                <h3 class="category">{{ book['Genre'] }}</h3>
+                <div class="price_and_buy">
+                    <button class="btn custom_btn"><a href="book_detail/{{ book['book_id'] }}">Read More</a></button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+<!-- include footer  -->
+{% include 'include/footer.html' %}

@@ -1,0 +1,40 @@
+<!-- include header  -->
+{% include 'include/header.html' %}
+
+<div class="heading_cls">
+    <h1 class="heading_one">Upload CSV</h1>
+    <span class="nearheadin_span">Note: The new CSV data will replace the old CSV data, and the model will be re-trained.</span>
+</div>
+
+<form method="POST" action="/upload" enctype="multipart/form-data" id="upload_file">
+    <input type="file" name="file" accept="" required />
+    <div class="table">
+        <table>
+            <tr>
+                <td colspan="2">Column should be*</td>
+            </tr>
+            <tr>
+                <td>Title</td>
+                <td>Author</td>
+                <td>Publisher</td>
+                <td>Genre</td>
+                <td>book_id</td>
+            </tr>
+            <tr>
+                <td>required</td>
+                <td>required</td>
+                <td>required</td>
+                <td>required</td>
+                <td>optional</td>
+            </tr>
+        </table>
+    </div>
+    <button type="submit">Upload</button>
+</form>
+
+
+
+
+
+<!-- include footer  -->
+{% include 'include/footer.html' %}

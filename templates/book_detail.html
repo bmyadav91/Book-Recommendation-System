@@ -1,0 +1,66 @@
+<!-- include header  -->
+{% include 'include/header.html' %}
+
+<div class="page_details_container">
+    <div class="product_img">
+        <div class="img_container">
+            <img src="{{ static_url }}static/img/open_black_book.svg" />
+        </div>
+
+        <div class="buy_and_cart">
+            <button class="btn">Buy Now</button>
+            <button class="btn">Add to cart</button>
+        </div>
+    </div>
+
+    <div class="product_details">
+        <h1 class="product_title">{{ book['Title'] }}</h1>
+
+        <div class="publisher_authour">
+            <strong title="author">{{ book['Author'] }} | </strong>
+            <strong title="publisher">{{ book['Publisher'] }}</strong>
+        </div>
+
+        <div class="product_description">
+            <p class="desc">
+                Generating Description....
+            </p>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="heading_cls">
+    <h1 class="heading_one">You May Like</h1>
+</div>
+
+<div class="product_container">
+    <div class="product_parent">
+        {% for book in similar_books %}
+        <div class="each_product">
+            <div class="product_img_container">
+                <img class="img_product" src="{{ static_url }}static/img/loading.webp"
+                    data-src="{{ static_url }}static/img/open_black_book.svg" />
+            </div>
+            <div class="product_content">
+                <h2 class="product_title">{{ book['Title'] }}</h2>
+                <h3 class="category">{{ book['Genre'] }}</h3>
+                <div class="price_and_buy">
+                    <button class="btn custom_btn"><a href="/book_detail/{{ book['book_id'] }}">Read More</a></button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- include footer  -->
+{% include 'include/footer.html' %}
