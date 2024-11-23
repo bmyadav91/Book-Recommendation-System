@@ -2,6 +2,12 @@
 
 dataset file link: https://gist.github.com/jaidevd/23aef12e9bf56c618c41
 
+## setup env (Virtual environment)
+setup Virtual environment name - env
+
+## install all library of requirements.txt
+`pip install -r requirements.txt`
+
 ## run setup.py
 `pip install -e`
 
