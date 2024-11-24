@@ -1,7 +1,5 @@
-import sys
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
-from src.exception import CustomException
 from src.logger import logging
 from src.utils.s3_uploader import StreamFile
 from src.configuration.monodb_connection import connect_to_mongo

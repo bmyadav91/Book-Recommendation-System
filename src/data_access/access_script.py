@@ -8,12 +8,13 @@ from src.logger import logging
 from flask import jsonify
 from settings import folder_name
 
-s3_client = s3_bucket_connection()
+
 bucket_name = os.getenv("AWS_BUCKET")
 
 # Load from S3
 def load_from_s3(file_name):
     try:
+        s3_client = s3_bucket_connection()
         full_path = f"{folder_name}/{file_name}"
         file_stream = io.BytesIO()
         s3_client.download_fileobj(bucket_name, full_path, file_stream)
@@ -66,14 +67,22 @@ data_loader = DataLoader()
 
 class Access_Data:
     def __init__(self):
-        self.genre_vectorizer = load_from_s3('genre_vectorizer.pkl')
-        self.genre_knn = load_from_s3('genre_knn.pkl')
+        self.loaded_resources = {}
 
-        self.title_vectorizer = load_from_s3('title_vectorizer.pkl')
-        self.title_knn = load_from_s3('title_knn.pkl')
+    def get_resource(self, variable, resource_name):
+        if variable not in self.loaded_resources:
+            try:
+                logging.error(f"Loading resource: {resource_name}")
+                self.loaded_resources[variable] = load_from_s3(resource_name)
+            except Exception as e:
+                logging.error(f"Error in {str(e)}")
+                self.loaded_resources[variable] = None
+        return self.loaded_resources[variable]
 
     def find_similar_genre(self, input_genre, book_id, top_n=5):
         try:
+            self.genre_vectorizer = self.get_resource('genre_vectorizer','genre_vectorizer.pkl')
+            self.genre_knn = self.get_resource('genre_knn','genre_knn.pkl')
             if not input_genre:
                 return jsonify({'message': 'Genre is None for this book'}), 400
 
@@ -126,6 +135,8 @@ class Access_Data:
         
     def search_book(self, query, top_n=5):
         try:
+            self.title_vectorizer = self.get_resource('title_vectorizer','title_vectorizer.pkl')
+            self.title_knn = self.get_resource('title_knn','title_knn.pkl')
             if not self.title_vectorizer or not self.title_knn:
                 raise CustomException("Models not initialized.", sys)
 
@@ -167,6 +178,8 @@ class Access_Data:
 
     def Cookie_Recommend(self, book_id, top_n=5):
         try:
+            self.title_vectorizer = self.get_resource('title_vectorizer','title_vectorizer.pkl')
+            self.title_knn = self.get_resource('title_knn','title_knn.pkl')
             # Load MongoDB data once
             mongo_data = data_loader.load_mongo_data()
             
@@ -212,9 +225,8 @@ class Access_Data:
 
             return results_json
         except Exception as e:
+            logging.error(f"{str(e)}")
             return False
-            logging.error(f"Error in Cookie_Recommend log: {e}")
-            raise CustomException(str(e), sys)
 
 
 

@@ -1,8 +1,6 @@
-import sys, os
+import os
 from flask import Flask, request, jsonify, render_template, make_response
-from src.exception import CustomException
 from src.logger import logging
-from src.configuration.monodb_connection import connect_to_mongo
 from src.upload_to_db import UploadCSVtoDB
 from src.components.data_validation import validator
 from src.components.model_trainer import run_train_model
