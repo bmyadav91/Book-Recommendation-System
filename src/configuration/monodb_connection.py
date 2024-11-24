@@ -14,11 +14,7 @@ def connect_to_mongo():
     global LoadedMongoConnection
     if LoadedMongoConnection is None:
         try:
-            client = MongoClient(
-                mongo_client, 
-                serverSelectionTimeoutMS=60000, 
-                socketTimeoutMS=60000
-            )
+            client = MongoClient(mongo_client)
             db = client[database_name]
             LoadedMongoConnection = db[collection_name]
             logging.info("Successfully connected to MongoDB.")
