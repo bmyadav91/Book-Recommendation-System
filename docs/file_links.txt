@@ -1,0 +1,5 @@
+HLD: https://docs.google.com/document/d/18S7rL5V9WD_G4BT3jwB8EOwHEifiJcgFV_Mxu1WRpJ8/edit?usp=sharing
+LLD: https://docs.google.com/document/d/1qKPrFcy9r4rwV3iYWmzShnBRnGxtkGipnXhDAzQzmNw/edit?usp=sharing
+Architecture: https://docs.google.com/document/d/1HSrGZDusClDlk4mn7UClwazSNuIK2B5n8s8SO5i1jtQ/edit?usp=sharing
+DPR: https://docs.google.com/document/d/1JTL8ckIS_zwwMCYKnelGRF_AGg3dJ_w9O3CbRDML4Do/edit?usp=sharing
+Wireframe: https://docs.google.com/document/d/1gc5qvf58WOcjtm3T3CLoIqPvwzloW217e2vLEEkQD3s/edit?usp=sharing
