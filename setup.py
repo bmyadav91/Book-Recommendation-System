@@ -4,7 +4,7 @@ setup(
     name="src",
     version="1.0",
     author="BM",
-    author_email="bmyadav@yahoo.com",
+    author_email="youremail@yahoo.com",
     packages=find_packages(),
     install_requirements=[]
 )
